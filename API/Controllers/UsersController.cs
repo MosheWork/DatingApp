@@ -1,22 +1,16 @@
 using API.Data;
 using API.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")] ///GET /api/users
-
-
+    [Authorize]
     // ControllerBase let u use action
-    public class UsersController : ControllerBase
+    public class UsersController : BaseApiController
     {
-
         //_ user for private fields
-
-
-
         private readonly DataContext _context;
 
         //ctor short cut to make constructor
@@ -26,6 +20,7 @@ namespace API.Controllers
             _context = context;
         }
 
+        [AllowAnonymous]
         //get all users
         [HttpGet]
 
